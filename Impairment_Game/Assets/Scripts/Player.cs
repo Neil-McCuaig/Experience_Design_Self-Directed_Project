@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -13,10 +14,20 @@ public class Player : MonoBehaviour
     public Vector3 moveInput;
     public Vector3 velocity;
 
+    public InputActionAsset inputActions;
+    public InputAction moveAction;
+
+    private void Awake()
+    {
+        var playerActions = inputActions.FindActionMap("PlayerMap");
+        moveAction = playerActions.FindAction("MoveX");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
