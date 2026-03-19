@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,10 +31,21 @@ public class Player : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        moveAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        moveAction.Disable();
+    }
+
     // Update is called once per frame
     void Update()
     {
 
+        //CheckInput();
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -51,5 +63,10 @@ public class Player : MonoBehaviour
         {
             transform.position += transform.right * movementSpeed * Time.deltaTime;
         }
+    }
+
+    void CheckInput()
+    {
+
     }
 }
