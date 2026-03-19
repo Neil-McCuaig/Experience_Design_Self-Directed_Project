@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Nearsighted_Minigame.unity
+    guid: 872a4e0f746d60c4b88d616c2e40a98b
+  - enabled: 1
+    path: Assets/Scenes/Farsighted.unity
+    guid: 86dd95d21c99ce24f890cc90b9f61717
+  - enabled: 1
+    path: Assets/Scenes/HardofHearing.unity
+    guid: bb0e5bbffdab224419749c381081284a
   m_configObjects: {}
