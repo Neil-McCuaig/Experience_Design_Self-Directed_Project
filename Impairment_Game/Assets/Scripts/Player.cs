@@ -6,8 +6,12 @@ public class Player : MonoBehaviour
 {
 
     public float movementSpeed = 5.0f;
+    public float lookSpeed = 2f;
+    private Vector3 moveDirection = Vector3.zero;
 
     public Rigidbody rb;
+    public Vector3 moveInput;
+    public Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
