@@ -6,67 +6,118 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    //Based on this tutorial;
+    //https://www.youtube.com/watch?v=f473C43s8nE
 
-    public float movementSpeed = 5.0f;
-    public float lookSpeed = 2f;
-    private Vector3 moveDirection = Vector3.zero;
+    [Header("Movement")]
+    public float movementSpeed;
 
-    public Rigidbody rb;
-    public Vector3 moveInput;
-    public Vector3 velocity;
+    public float groundDrag;
 
-    public InputActionAsset inputActions;
-    public InputAction moveAction;
+    public float jumpForce;
+    public float jumpCooldown;
+    public float airMultiplier;
+    bool readyToJump;
 
-    private void Awake()
-    {
-        var playerActions = inputActions.FindActionMap("PlayerMap");
-        moveAction = playerActions.FindAction("MoveX");
-    }
+    [Header("Keybinds")]
+    public KeyCode jumpKey = KeyCode.Space;
+
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    bool grounded;
+
+    public Transform orientation;
+
+    float horizontalInput;
+    float verticalInput;
+
+    Vector3 moveDirection;
+
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-
-    }
-
-    private void OnEnable()
-    {
-        moveAction.Enable();
-    }
-
-    private void OnDisable()
-    {
-        moveAction.Disable();
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+        readyToJump = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        
+        MyInput();
+        SpeedControl();
 
-        //CheckInput();
-
-        if (Input.GetKey(KeyCode.W))
+        if (grounded)
         {
-            transform.position += transform.forward * movementSpeed * Time.deltaTime;
+            rb.drag = groundDrag;
         }
-        if (Input.GetKey(KeyCode.S))
+        else
         {
-            transform.position -= transform.forward * movementSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position -= transform.right * movementSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += transform.right * movementSpeed * Time.deltaTime;
+            rb.drag = 0;
         }
     }
 
-    void CheckInput()
+    private void FixedUpdate()
     {
+        MovePlayer();
+    }
+    private void MyInput()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
 
+        // when to jump
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        {
+            readyToJump = false;
+
+            Jump();
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+    }
+
+    private void MovePlayer()
+    {
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        rb.AddForce(moveDirection.normalized * movementSpeed * 10f, ForceMode.Force);
+
+        if (grounded)
+        {
+            rb.AddForce(moveDirection.normalized * movementSpeed * 10f, ForceMode.Force);
+        }
+        else if (!grounded)
+        {
+            rb.AddForce(moveDirection.normalized * movementSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+            
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        if(flatVel.magnitude > movementSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * movementSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+    }
+
+    private void Jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    private void ResetJump()
+    {
+        readyToJump = true;
     }
 }
