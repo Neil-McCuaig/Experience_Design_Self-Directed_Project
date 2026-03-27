@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -119,5 +120,15 @@ public class Player : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("EndLevel"))
+        {
+
+            SceneManager.LoadScene(0);
+        
+        }
     }
 }
