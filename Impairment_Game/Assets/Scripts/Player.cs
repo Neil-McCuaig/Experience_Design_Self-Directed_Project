@@ -124,11 +124,15 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("We are in the beam.");
         if (other.gameObject.CompareTag("EndLevel"))
         {
-
+            Debug.Log("Going uuuuuuupppppppp!!!");
             SceneManager.LoadScene(0);
-        
+        }
+        else if (!other.gameObject.CompareTag("EndLevel"))
+        {
+            Debug.Log("fffffFFFFFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUu");
         }
     }
 }
