@@ -37,12 +37,16 @@ public class Player : MonoBehaviour
 
     Rigidbody rb;
 
+    GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+
+        manager = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
