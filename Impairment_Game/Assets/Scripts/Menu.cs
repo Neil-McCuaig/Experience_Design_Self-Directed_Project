@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     GameManager manager;
+    Player player;
 
     void Start()
     {
@@ -13,7 +14,7 @@ public class Menu : MonoBehaviour
 
     public void OnPlayNearsightButtonPressed()
     {
-        manager.gamemodeNearsight = true;
+        //manager.gamemodeNearsight = true;
         SceneManager.LoadScene(1);
     }
 
@@ -34,12 +35,14 @@ public class Menu : MonoBehaviour
 
     public void OnReturnButtonPressed()
     {
-        manager.gamemodeNearsight = false;
+        //manager.gamemodeNearsight = false;
         SceneManager.LoadScene(0);
     }
 
-    public void OnBeginNearsightedPressed()
+    public void OnBeginMinigamePressed()
     {
+        manager.gamemodeNearsight = true;
         manager.NearSightBegin();
+        player.playerActive = true;
     }
 }

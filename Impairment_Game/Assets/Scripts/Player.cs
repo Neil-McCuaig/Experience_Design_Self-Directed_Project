@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.Sqlite;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode pauseKey = KeyCode.Escape;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -39,14 +41,18 @@ public class Player : MonoBehaviour
 
     GameManager manager;
 
+    public bool playerActive;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+        playerActive = false;
 
         manager = FindAnyObjectByType<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -54,8 +60,12 @@ public class Player : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         
-        MyInput();
-        SpeedControl();
+        if (playerActive == true)
+        {
+            MyInput();
+            SpeedControl();
+        }
+
 
         if (grounded)
         {
@@ -84,6 +94,19 @@ public class Player : MonoBehaviour
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
+        }
+
+        if (Input.GetKey(pauseKey))
+        {
+            Debug.Log("You pressed the escape key.");
+            if (manager.pauseMode == false)
+            {
+                manager.pauseMenuEnable();
+            }
+            else if (manager.pauseMode == true) 
+            { 
+                manager.pauseMenuDisable();
+            }
         }
     }
 
@@ -132,7 +155,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("EndLevel"))
         {
             Debug.Log("Going uuuuuuupppppppp!!!");
-            SceneManager.LoadScene(0);
+            manager.victory = true;
         }
         else if (!other.gameObject.CompareTag("EndLevel"))
         {
