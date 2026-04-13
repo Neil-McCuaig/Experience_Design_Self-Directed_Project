@@ -6,11 +6,13 @@ public class Farsight_Pickup : MonoBehaviour
 {
     public Camera cam;
     public LayerMask buyables;
+    BinContent BinContent;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
+        //BinContent = FindAnyObjectByType(BinContent);
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class Farsight_Pickup : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100, buyables)) 
             {
                 Debug.Log(hit.transform.name);
+                //if (BinContent =)
             }
         }
     }

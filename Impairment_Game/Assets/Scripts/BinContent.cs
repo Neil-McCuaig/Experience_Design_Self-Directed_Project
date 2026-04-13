@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BinContent : MonoBehaviour
 {
+    //[SerializeField]
+    public int purchaseID;
+
     // Start is called before the first frame update
     void Start()
     {

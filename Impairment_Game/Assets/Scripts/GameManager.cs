@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public bool timerActive;
 
     [Header("Farsight Mode")]
-
+    public bool gamemodeFarsight;
     
     public bool hasGreenJogHurt;
 
@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     public bool boughtTheMilk;
 
+    public bool gamemodeHardofHearing;
+
+    public GameObject goHome;
 
     [Header("General Stuff")]
 
