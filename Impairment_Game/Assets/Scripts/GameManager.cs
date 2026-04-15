@@ -14,8 +14,18 @@ public class GameManager : MonoBehaviour
     public float currentTime;
     public bool timerActive;
 
-    public bool victory;
-    public bool defeat;
+    [Header("Farsight Mode")]
+    public bool gamemodeFarsight;
+    
+    public bool hasGreenJogHurt;
+
+    [Header("Hard of hearing Mode")]
+
+    public bool boughtTheMilk;
+
+    public bool gamemodeHardofHearing;
+
+    public GameObject goHome;
 
     [Header("General Stuff")]
 
@@ -27,6 +37,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     
     public bool pauseMode;
+
+    public bool victory;
+    public bool defeat;
 
     //How to prevent the pause from opening and shutting too fast while time is not moving?
     //public float antiPauseSpam;
@@ -46,6 +59,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gamemodeNearsight == true)
+        {
+            boughtTheMilk = true;
+        }
+
         if (gamemodeNearsight == true && timerActive == false)
         {
             Time.timeScale = 0;
