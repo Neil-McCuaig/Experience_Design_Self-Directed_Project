@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gamemodeNearsight == true)
+        {
+            boughtTheMilk = true;
+        }
+
         if (gamemodeNearsight == true && timerActive == false)
         {
             Time.timeScale = 0;

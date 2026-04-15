@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("We are in the beam.");
-        if (other.gameObject.CompareTag("EndLevel"))
+        if (other.gameObject.CompareTag("EndLevel") && manager.boughtTheMilk == true)
         {
             Debug.Log("Going uuuuuuupppppppp!!!");
             manager.victory = true;
