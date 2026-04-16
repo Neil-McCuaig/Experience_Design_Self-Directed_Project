@@ -15,6 +15,9 @@ public class Car_Crash_Logic : MonoBehaviour
 
     Player player;
 
+    public AudioSource carSource;
+    //public AudioClip carHorns;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,7 @@ public class Car_Crash_Logic : MonoBehaviour
         carTimerCurrent = carTimerMax;
         violenceTimingCurrent = violenceTimingMax;
         violenceTime = false;
+        carSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +39,8 @@ public class Car_Crash_Logic : MonoBehaviour
         {
             violenceTimingCurrent -= Time.deltaTime;
             violenceTime = true;
+            //carSource.PlayOneShot(carHorns);
+            carSource.Play();
         }
         if (violenceTimingCurrent <= 0)
         {
