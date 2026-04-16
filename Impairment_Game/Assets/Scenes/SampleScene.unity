@@ -1633,9 +1633,25 @@ MonoBehaviour:
   maxTime: 0
   currentTime: 0
   timerActive: 0
+  gamemodeFarsight: 0
+  pickUp: {fileID: 0}
+  hasGreenJogHurt: 0
+  hasSanta: 0
+  hasApple: 0
+  hasWindex: 0
+  hasPepper: 0
+  hasBlueJogHurt: 0
+  gamemodeHardofHearing: 0
+  boughtTheMilk: 0
+  goHome: {fileID: 0}
+  introPanel: {fileID: 157613312}
+  pausePanel: {fileID: 0}
+  defeatScreen: {fileID: 0}
+  victoryScreen: {fileID: 0}
+  timerText: {fileID: 0}
+  pauseMode: 0
   victory: 0
   defeat: 0
-  introPanel: {fileID: 157613312}
 --- !u!4 &1545555672
 Transform:
   m_ObjectHideFlags: 0

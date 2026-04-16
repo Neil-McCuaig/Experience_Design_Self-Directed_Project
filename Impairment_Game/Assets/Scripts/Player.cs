@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
 
     public bool playerActive;
 
+    Car_Crash_Logic crash_Logic;
+
     //[Header("Inventory")]
     //public int itemNumber = 0;
     //public int currentItem = 0;
@@ -173,6 +175,14 @@ public class Player : MonoBehaviour
         else if (!other.gameObject.CompareTag("EndLevel"))
         {
             Debug.Log("Ouch");
+        }
+        //if (other.CompareTag("DriveZones"))
+        if (other.TryGetComponent<Car_Crash_Logic>(out Car_Crash_Logic crash_Logic))
+        {
+            if (crash_Logic.violenceTime == true)
+            {
+                manager.defeat = true;
+            }
         }
     }
 }
