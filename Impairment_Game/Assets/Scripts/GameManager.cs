@@ -16,21 +16,22 @@ public class GameManager : MonoBehaviour
 
     [Header("Farsight Mode")]
     public bool gamemodeFarsight;
+
+    public AudioSource pickUp;
     
     public bool hasGreenJogHurt;
     public bool hasSanta;
     public bool hasApple;
     public bool hasWindex;
 
+    public bool hasPepper;
     public bool hasBlueJogHurt;
-
-
 
     [Header("Hard of hearing Mode")]
 
-    public bool boughtTheMilk;
-
     public bool gamemodeHardofHearing;
+
+    public bool boughtTheMilk;
 
     public GameObject goHome;
 
@@ -89,6 +90,16 @@ public class GameManager : MonoBehaviour
         }
 
         if (gamemodeNearsight == true && timerActive == false)
+        {
+            Time.timeScale = 0;
+        }
+
+        if (gamemodeFarsight == true && timerActive == false)
+        {
+            Time.timeScale = 0;
+        }
+
+        if (gamemodeHardofHearing == true && timerActive == false)
         {
             Time.timeScale = 0;
         }
@@ -173,9 +184,10 @@ public class GameManager : MonoBehaviour
 
     public void Inventory(int ID)
     {
-        if (ID == 1)
+        if (ID == 1 && hasGreenJogHurt == false)
         {
             hasGreenJogHurt = true;
+
         }
         if (ID == 2) 
         {

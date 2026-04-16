@@ -167,12 +167,12 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("BuyMilk"))
         {
+            Debug.Log("Mooove it!");
             manager.boughtTheMilk = true;
-
         }
         else if (!other.gameObject.CompareTag("EndLevel"))
         {
-            Debug.Log("fffffFFFFFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUu");
+            Debug.Log("Ouch");
         }
     }
 }

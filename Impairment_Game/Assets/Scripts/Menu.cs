@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     void Start()
     {
         manager = FindAnyObjectByType<GameManager>();
+        player = FindAnyObjectByType<Player>();
     }
 
     public void OnPlayNearsightButtonPressed()

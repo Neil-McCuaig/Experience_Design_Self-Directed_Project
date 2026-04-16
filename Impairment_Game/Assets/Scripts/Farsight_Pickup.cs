@@ -11,7 +11,7 @@ public class Farsight_Pickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main;
+        cam = FindAnyObjectByType<Camera>();
         //BinContent = FindAnyObjectByType(BinContent);
     }
 
@@ -19,7 +19,7 @@ public class Farsight_Pickup : MonoBehaviour
     void Update()
     {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 10f;
+        mousePos.z = 100f;
         mousePos = cam.ScreenToWorldPoint(mousePos);
         Debug.DrawRay(transform.position, mousePos - transform.position, Color.blue);
 
@@ -27,13 +27,14 @@ public class Farsight_Pickup : MonoBehaviour
         { 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            Debug.Log("You have, indeed, pressed mouse1");
 
             if (Physics.Raycast(ray, out hit, 100, buyables)) 
             {
                 Debug.Log(hit.transform.name);
                 if (hit.collider.TryGetComponent(out BinContent bin))
                 {
-
+                    bin.AddToInventory();
                 }
 
             }

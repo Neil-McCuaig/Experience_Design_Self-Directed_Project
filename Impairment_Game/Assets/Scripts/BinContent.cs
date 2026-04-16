@@ -16,7 +16,7 @@ public class BinContent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        manager = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
