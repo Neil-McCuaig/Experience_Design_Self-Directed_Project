@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         victory = false;
         defeat = false;
         pauseMode = false;
+        pickUp = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -187,19 +188,22 @@ public class GameManager : MonoBehaviour
         if (ID == 1 && hasGreenJogHurt == false)
         {
             hasGreenJogHurt = true;
-
+            pickUp.Play();
         }
         if (ID == 2) 
         {
             hasSanta = true;
+            pickUp.Play();
         }
         if (ID == 3)
         {
             hasApple = true;
+            pickUp.Play();
         }
         if (ID == 4)
         {
             hasWindex = true;
+            pickUp.Play();
         }
     }
 

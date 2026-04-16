@@ -27,7 +27,7 @@ public class Farsight_Pickup : MonoBehaviour
         { 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Debug.Log("You have, indeed, pressed mouse1");
+            Debug.Log("You have, indeed, pressed Mouse1");
 
             if (Physics.Raycast(ray, out hit, 100, buyables)) 
             {
