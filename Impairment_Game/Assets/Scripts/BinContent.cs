@@ -7,6 +7,12 @@ public class BinContent : MonoBehaviour
     //[SerializeField]
     public int purchaseID;
 
+    //public bool canPurchase;
+
+    //Player player;
+
+    GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,5 +23,10 @@ public class BinContent : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddToInventory()
+    {
+        manager.Inventory(purchaseID);
     }
 }

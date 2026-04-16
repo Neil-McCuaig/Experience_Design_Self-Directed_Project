@@ -31,7 +31,11 @@ public class Farsight_Pickup : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100, buyables)) 
             {
                 Debug.Log(hit.transform.name);
-                //if (BinContent =)
+                if (hit.collider.TryGetComponent(out BinContent bin))
+                {
+
+                }
+
             }
         }
     }

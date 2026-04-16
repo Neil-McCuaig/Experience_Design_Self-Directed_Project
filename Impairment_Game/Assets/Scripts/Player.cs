@@ -43,6 +43,11 @@ public class Player : MonoBehaviour
 
     public bool playerActive;
 
+    //[Header("Inventory")]
+    //public int itemNumber = 0;
+    //public int currentItem = 0;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +57,7 @@ public class Player : MonoBehaviour
         playerActive = false;
 
         manager = FindAnyObjectByType<GameManager>();
+        //currentItem = itemNumber;
 
     }
 
@@ -149,10 +155,12 @@ public class Player : MonoBehaviour
         readyToJump = true;
     }
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("We are in the beam.");
-        if (other.gameObject.CompareTag("EndLevel") && manager.boughtTheMilk == true)
+        if (other.gameObject.CompareTag("EndLevel") && manager.boughtTheMilk == true && manager.hasGreenJogHurt == true && manager.hasSanta == true && manager.hasWindex == true && manager.hasApple == true)
         {
             Debug.Log("Going uuuuuuupppppppp!!!");
             manager.victory = true;

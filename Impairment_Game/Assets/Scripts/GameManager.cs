@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour
     public bool gamemodeFarsight;
     
     public bool hasGreenJogHurt;
+    public bool hasSanta;
+    public bool hasApple;
+    public bool hasWindex;
+
+    public bool hasBlueJogHurt;
+
+
 
     [Header("Hard of hearing Mode")]
 
@@ -62,6 +69,23 @@ public class GameManager : MonoBehaviour
         if (gamemodeNearsight == true)
         {
             boughtTheMilk = true;
+            hasApple = true;
+            hasGreenJogHurt = true;
+            hasSanta = true;
+            hasWindex = true;
+        }
+
+        if (gamemodeFarsight == true)
+        {
+            boughtTheMilk = true;
+        }
+
+        if (gamemodeHardofHearing == true) 
+        {
+            hasApple = true;
+            hasGreenJogHurt = true;
+            hasSanta = true;
+            hasWindex = true;
         }
 
         if (gamemodeNearsight == true && timerActive == false)
@@ -97,6 +121,24 @@ public class GameManager : MonoBehaviour
         timerActive = true;
         Time.timeScale = 1;
         introPanel.SetActive(false);
+        gamemodeNearsight = true;
+
+    }
+
+    public void FarSightBegin()
+    {
+        timerActive = true;
+        Time.timeScale = 1;
+        introPanel.SetActive(false);
+        gamemodeFarsight = true;
+    }
+
+    public void HardOfHearingBegin()
+    {
+        timerActive = true;
+        Time.timeScale = 1;
+        introPanel.SetActive(false);
+        gamemodeHardofHearing = true;
     }
 
     public void pauseMenuEnable()
@@ -127,6 +169,26 @@ public class GameManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void Inventory(int ID)
+    {
+        if (ID == 1)
+        {
+            hasGreenJogHurt = true;
+        }
+        if (ID == 2) 
+        {
+            hasSanta = true;
+        }
+        if (ID == 3)
+        {
+            hasApple = true;
+        }
+        if (ID == 4)
+        {
+            hasWindex = true;
+        }
     }
 
 }

@@ -39,10 +39,23 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void OnBeginMinigamePressed()
+    public void OnBeginNearsightPressed()
     {
-        manager.gamemodeNearsight = true;
+        //manager.gamemodeNearsight = true;
         manager.NearSightBegin();
         player.playerActive = true;
     }
+
+    public void OnBeginFarSightPressed()
+    {
+        manager.FarSightBegin();
+        player.playerActive = true;
+    }
+
+    public void OnBeginHardOfHearingPressed() 
+    { 
+        manager.HardOfHearingBegin();
+        player.playerActive = true;
+    }
+
 }
